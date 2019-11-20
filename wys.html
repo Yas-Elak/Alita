@@ -1,0 +1,1561 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link href="extern-plugins/prismjs/prism.css" rel="stylesheet"/>
+
+    <title>Document</title>
+</head>
+<body>
+
+<div class="container salasa-container" id="salasa-editor">
+    <div class="row">
+        <div class="toolbar">
+            <div class="row toolbar-row">
+
+                <!--icon code-->
+                <a href="#" data-command='raw-html' id="a-rawhtml"><i class='fa fa-code'></i></a>
+
+                <!--icon back-->
+                <a href="#" data-command='undo'><i class='fas fa-angle-left disabled'></i></a>
+
+                <!--icon redo-->
+                <a href="#" data-command='redo'><i class='fas fa-angle-right'></i></a>
+
+                <!--icon header-->
+                <div class="dropdown">
+                    <button id="heading-button" class="btn btn-default btn-sm dropdown-toggle" type="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span>Heading</span>
+                    </button>
+                    <div class="heading-menu dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <p><a href="#" class="dropdown-item" data-command='p' id="a-p">Paragraphe</a></p>
+                        <h1><a href="#" class="dropdown-item" data-command='h1' id="a-h1">Header 1</a></h1>
+                        <h2><a href="#" class="dropdown-item" data-command='h2' id="a-h2">Header 2</a></h2>
+                        <h3><a href="#" class="dropdown-item" data-command='h3' id="a-h3">Header 3</a></h3>
+                        <h4><a href="#" class="dropdown-item" data-command='h4' id="a-h4">Header 4</a></h4>
+                        <h5><a href="#" class="dropdown-item" data-command='h5' id="a-h5">Header 5</a></h5>
+                        <h6><a href="#" class="dropdown-item" data-command='h6' id="a-h6">Header 6</a></h6>
+                        <a href="#" class="dropdown-item" data-command='indent' id="a-indent">Quote</a>
+                        <a href="#" class="dropdown-item" data-command='outdent'
+                           id="a-outdent"><strike>Quote</strike></a>
+                    </div>
+                </div>
+
+                <!--icon font-->
+                <div class="dropdown">
+                    <button id="font-button" class="btn btn-default btn-sm dropdown-toggle" type="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-font"></i>
+                    </button>
+                    <div class="salasa-font-family-menu dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a href="#" class="dropdown-item salasa-font-family" data-command='ff-font' data-font='Arial'
+                           id="a-ff-arial">Arial</a>
+                        <a href="#" class="dropdown-item salasa-font-family" data-command='ff-font'
+                           data-font='Arial Black' id="a-ff-arialblack">Arial Black</a>
+                        <a href="#" class="dropdown-item salasa-font-family" data-command='ff-font' data-font='Georgia'
+                           id="a-ff-georgia">Georgia</a>
+                        <a href="#" class="dropdown-item salasa-font-family" data-command='ff-font'
+                           data-font='Helvetica' id="a-ff-helvetica">Helvetica</a>
+                        <a href="#" class="dropdown-item salasa-font-family" data-command='ff-font'
+                           data-font='Times New Roman' id="a-ff-timesnewroman">Times New Roman</a>
+                        <a href="#" class="dropdown-item salasa-font-family" data-command='ff-font'
+                           data-font='Courier New' id="a-ff-couriernew">Courier New</a>
+                        <a href="#" class="dropdown-item salasa-font-family" data-command='ff-font' data-font='Verdana'
+                           id="a-ff-verdana">Verdana</a>
+                        <a href="#" class="dropdown-item salasa-font-family" data-command='ff-font'
+                           data-font='Comic sans MS' id="a-ff-comicsansms">Comic sans ms</a>
+                        <a href="#" class="dropdown-item salasa-font-family" data-command='ff-font'
+                           data-font='Trebuchet Ms' id="a-ff-trebuchetms">Trebuchet ms</a>
+                        <a href="#" class="dropdown-item salasa-font-family" data-command='ff-font' data-font='Tahoma'
+                           id="a-ff-tahoma">Tahoma</a>
+                        <a href="#" class="dropdown-item salasa-font-family" data-command='ff-font' data-font='Impact'
+                           id="a-ff-impact">Impact</a>
+                    </div>
+                </div>
+
+                <!--icon fontsize-->
+                <div class="dropdown">
+                    <button id="fontsize-button" class="btn btn-default btn-sm dropdown-toggle" type="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-text-height"></i>
+                    </button>
+                    <div class="salasa-font-family-menu dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a href="#" class="dropdown-item salasa-font-size" data-command='ff-fontsize' data-font='8px'
+                           id="a-ff-8">8</a>
+                        <a href="#" class="dropdown-item salasa-font-size" data-command='ff-fontsize' data-font='9px'
+                           id="a-ff-9">9</a>
+                        <a href="#" class="dropdown-item salasa-font-size" data-command='ff-fontsize' data-font='10px'
+                           id="a-ff-10">10</a>
+                        <a href="#" class="dropdown-item salasa-font-size" data-command='ff-fontsize' data-font='11px'
+                           id="a-ff-11">11</a>
+                        <a href="#" class="dropdown-item salasa-font-size" data-command='ff-fontsize' data-font='12px'
+                           id="a-ff-12">12</a>
+                        <a href="#" class="dropdown-item salasa-font-size" data-command='ff-fontsize' data-font='14px'
+                           id="a-ff-14">14</a>
+                        <a href="#" class="dropdown-item salasa-font-size" data-command='ff-fontsize' data-font='18px'
+                           id="a-ff-18">18</a>
+                        <a href="#" class="dropdown-item salasa-font-size" data-command='ff-fontsize' data-font='24px'
+                           id="a-ff-24">24</a>
+                        <a href="#" class="dropdown-item salasa-font-size" data-command='ff-fontsize' data-font='30px'
+                           id="a-ff-30">30</a>
+                        <a href="#" class="dropdown-item salasa-font-size" data-command='ff-fontsize' data-font='36px'
+                           id="a-ff-36">36</a>
+                        <a href="#" class="dropdown-item salasa-font-size" data-command='ff-fontsize' data-font='48px'
+                           id="a-ff-48">48</a>
+                    </div>
+                </div>
+
+                <!--icon lineheight-->
+                <div class="dropdown">
+                    <button id="lineheight-button" class="btn btn-default btn-sm dropdown-toggle" type="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-arrows-alt-v"></i>
+                    </button>
+                    <div class="salasa-lineheight-menu dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a href="#" class="dropdown-item salasa-font-size" data-command='lh-lineheight' data-lh='normal'
+                           id="a-lh">Normal</a>
+                        <a href="#" class="dropdown-item salasa-font-size" data-command='lh-lineheight' data-lh='1'
+                           id="a-lh-1">1</a>
+                        <a href="#" class="dropdown-item salasa-font-size" data-command='lh-lineheight' data-lh='1.2'
+                           id="a-lh-120">1.2</a>
+                        <a href="#" class="dropdown-item salasa-font-size" data-command='lh-lineheight' data-lh='1.5'
+                           id="a-lh-150">1.5</a>
+                        <a href="#" class="dropdown-item salasa-font-size" data-command='lh-lineheight' data-lh='1.7'
+                           id="a-lh-170">1.7</a>
+                        <a href="#" class="dropdown-item salasa-font-size" data-command='lh-lineheight' data-lh='2'
+                           id="a-lh-200">2</a>
+                        <a href="#" class="dropdown-item salasa-font-size" data-command='lh-lineheight' data-lh='3'
+                           id="a-lh-300">3</a>
+                        <a href="#" class="dropdown-item salasa-font-size" data-command='lh-lineheight' data-lh='4'
+                           id="a-lh-400">4</a>
+                    </div>
+                </div>
+
+                <!--icon font-palette-->
+                <div class="dropdown">
+                    <button id="fore-wrapper-button" class="btn btn-default btn-sm dropdown-toggle" type="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class='fa fa-font' style='color:#C96;'></i>
+                    </button>
+                    <div class="fore-palette dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    </div>
+                </div>
+
+                <!--icon background font palette-->
+                <div class="dropdown">
+                    <button id="back-wrapper-button" class="btn btn-default btn-sm dropdown-toggle" type="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class='fa fa-font' style='background:#C96;'></i>
+                    </button>
+                    <div class="back-palette dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    </div>
+                </div>
+
+                <!--icon border-->
+                <div class="dropdown">
+                    <button id="border-button" class="btn btn-default btn-sm dropdown-toggle" type="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="far fa-square"></i>
+                    </button>
+                    <div class="salasa-border-menu dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a href="#" class="dropdown-item salasa-border" data-command='borderUpDown'
+                           id="a-b-updown">Quick Border</a>
+                        <a href="#" data-command="border-personalization" class="dropdown-item salasa-border"
+                           data-toggle="modal"
+                           data-target="#border-modal">Personalize</a>
+                        <a href="#" class="dropdown-item salasa-border" data-command='borderRemove'
+                           id="a-b-remove">Remove</a>
+                    </div>
+                </div>
+
+                <!--icon bold-->
+                <a href="#" data-command='bold' id="a-bold"><i class='fa fa-bold'></i></a>
+
+                <!--icon italic-->
+                <a href="#" data-command='italic' id="a-italic"><i class='fa fa-italic'></i></a>
+
+                <!--icon underline-->
+                <a href="#" data-command='underline' id="a-underline">
+                    <i class='fa fa-underline'></i></a>
+
+                <!--icon strike-->
+                <a href="#" data-command='strikeThrough' id="a-strikeThrough">
+                    <i class='fa fa-strikethrough'></i></a>
+
+                <!--icon justify-->
+                <div class="dropdown">
+                    <button id="align-button" class="btn btn-default btn-sm dropdown-toggle" type="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class='fa fa-align-justify'></i></button>
+                    <div class="align-menu dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a href="#" data-command='justifyLeft' id="a-justifyLeft"><i class='fa fa-align-left'></i></a>
+                        <a href="#" data-command='justifyCenter' id="a-justifyCenter"><i class='fa fa-align-center'></i></a>
+                        <a href="#" data-command='justifyRight' id="a-justifyRight">
+                            <i class='fa fa-align-right'></i></a>
+                        <a href="#" data-command='justifyFull' id="a-justifyFull">
+                            <i class='fa fa-align-justify'></i></a>
+                        <a href="#" data-command='indentation' id="a-indentation">
+                            <i class='fas fa-indent'></i></a>
+                        <a href="#" data-command='outdentation' id="a-outdentation">
+                            <i class='fas fa-outdent'></i></a>
+                    </div>
+                </div>
+
+                <!--icon ulist-->
+                <div class="dropdown">
+                    <button id="a-insertUnorderedList" class="btn btn-default btn-sm dropdown-toggle" type="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class='fa fa-list-ul'></i></button>
+                    <div class="dropdown-menu salasa-font-family-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#" data-command='insertUnorderedList' data-list="disc">&#9679;, &#9679;,
+                            &#9679;, ...</a>
+                        <a class="dropdown-item" href="#" data-command='insertUnorderedList' data-list="circle">&#9675;,
+                            &#9675;, &#9675;;, ...</a>
+                        <a class="dropdown-item" href="#" data-command='insertUnorderedList' data-list="square">&#9632;
+                            , &#9632;, &#9632;, ...</a>
+                    </div>
+                </div>
+
+                <!--icon olist-->
+                <div class="dropdown">
+                    <button id="a-insertOrderedList" class="btn btn-default btn-sm dropdown-toggle" type="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class='fa fa-list-ol'></i></button>
+                    <div class="dropdown-menu salasa-font-family-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#" data-command='insertOrderedList' data-list="decimal">1, 2, 3,
+                            ...</a>
+                        <a class="dropdown-item" href="#" data-command='insertOrderedList'
+                           data-list="decimal-leading-zero">01, 02, 03, ...</a>
+                        <a class="dropdown-item" href="#" data-command='insertOrderedList' data-list="lower-alpha">a, b,
+                            c, ...</a>
+                        <a class="dropdown-item" href="#" data-command='insertOrderedList' data-list="lower-greek">&alpha;,
+                            &beta;, &gamma;, ...</a>
+                        <a class="dropdown-item" href="#" data-command='insertOrderedList' data-list="lower-roman">i,
+                            ii, iii, ...</a>
+                        <a class="dropdown-item" href="#" data-command='insertOrderedList' data-list="upper-alpha">A, B,
+                            C, ...</a>
+                        <a class="dropdown-item" href="#" data-command='insertOrderedList' data-list="upper-roman">I,
+                            II, III, ...</a>
+                    </div>
+                </div>
+
+                <!--icon create link-->
+                <a href="#" data-command="linkCreation" id="a-creatLink" data-toggle="modal"
+                   data-target="#link-modal"><i class='fa fa-link'></i></a>
+
+                <!--icon delete link-->
+                <a href="#" data-command='unlink'><i class='fa fa-unlink'></i></a>
+
+                <!--icon insert image-->
+                <a href="#" data-command="insertTheImage" id="a-insertimage" data-toggle="modal"
+                   data-target="#image-modal"><i class='fa fa-image'></i></a>
+
+                <!--icon insert video-->
+                <a href="#" data-command="insertTheEmbed" id="a-noembed" data-toggle="modal"
+                   data-target="#embed-modal"><i class='fab fa-youtube'></i></a>
+
+                <!--icon subscript-->
+                <a href="#" data-command='subscript' id="a-subscript"><i class='fa fa-subscript'></i></a>
+
+                <!--icon superscript-->
+                <a href="#" data-command='superscript' id="a-superscript"><i class='fa fa-superscript'></i></a>
+
+                <!--icon hr-->
+                <a href="#" data-command='horizontalLine' id="a-horizontal-line"><i class="fas fa-grip-lines"></i></a>
+
+                <!--icon table-->
+                <div class="dropdown">
+                    <button id="table-button" class="btn btn-default btn-sm dropdown-toggle" type="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-table"></i></button>
+                    <div class="align-menu dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <div class="form-row">
+                            <div class="col">
+                                <input type="text" class="form-control form-control-sm" placeholder="row"
+                                       id="salasa-input-row">
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control form-control-sm" placeholder="col"
+                                       id="salasa-input-col">
+                            </div>
+                            <div class="col">
+                                <button id="salasa-btn-insert-table" class="btn btn-secondary btn-sm"><i
+                                        class="fas fa-check-circle"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--icon date-->
+                <div class="dropdown">
+                    <button id="a-clock" data-command="clock" class="btn btn-default btn-sm dropdown-toggle" type="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class='far fa-clock'></i></button>
+                    <div class="dropdown-menu salasa-clock-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#" data-command='insertTime' id="fullTime" data-list="fullTime"></a>
+                        <a class="dropdown-item" href="#" data-command='insertTime' id="longDay" data-list="longDay"></a>
+                        <a class="dropdown-item" href="#" data-command='insertTime' id="shortDay" data-list="shortDay"></a>
+                        <a class="dropdown-item" href="#" data-command='insertTime' id="shortHour" data-list="shortHour"></a>
+                    </div>
+                </div>
+
+                <!--icon code-->
+                <a href="#" data-command='prismCode' id="a-prism-code" data-toggle="modal"
+                   data-target="#prism-code-modal"><i class="fas fa-file-code"></i></a>
+
+                <!--icon file-->
+                <a href="#" data-command="page-break" id="a-page-break"><i class="far fa-file"></i></a>
+
+                <!--icon eraser ??????-->
+                <a href="#" id="a-remove-format" data-command='removeFormat'><i class="fas fa-eraser"></i></a>
+
+                <!--icon full screen -->
+                <a href="#" id="a-expend-screen"><i class="fas fa-expand-arrows-alt"></i></a>
+
+                <!--icon print pdf-->
+                <a href="#" data-command="printDiv" id="a-print-editor"><i class="fas fa-print"></i></a>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row row-editor">
+        <!--textarea for html code-->
+        <textarea id="editor-html"></textarea>
+
+
+        <!--bloc who will appear to help resize image dynamically-->
+        <div id="img-resizer">
+            <div id="ne-resizer-corner" class="resizer-corner"></div>
+            <div id="nw-resizer-corner" class="resizer-corner"></div>
+            <div id="se-resizer-corner" class="resizer-corner"></div>
+            <div id="sw-resizer-corner" class="resizer-corner"></div>
+        </div>
+
+        <div id='editor' contenteditable>
+            <h1>A WYSIWYG Editor.</h1>
+            <p>Try making some changes here. Add your own text or maybe an image.</p>
+            <p> A faire : les smiley, le font awesome free, les
+                caractés spéciaux
+                afficher lecmptage de caractere</p>
+            <p>Pas de négatif pour les bordure et choix couleur</p>
+        </div>
+
+        <!--Copyright under block text-->
+        <div id="salasa-copyright" class="wrapper-copyright">
+            <div class="block-copyright" id="block-copyright-left">Powered by Salasa</div>
+            <div class="block-copyright" id="block-copyright-right">
+                Characters :
+                <span id="salasa-character-count"></span>
+                 / Characters w\spaces :
+                <span id="salasa-character-count-no-spaces"></span>
+                 / Words :
+                <span id="salasa-character-count-words"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- The Modals -->
+<div class="modal fade" id="image-modal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Upload Image</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>By URL :</label><br>
+                    <div class="row justify-content-between">
+                        <input type="url" class="form-control col-sm-7" id="input-upload-image-by-url"/>
+                        <button id="confirm-url" class="btn btn-info col-sm-4 btn-modal">Confirm url</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Select image to upload to Imgur :</label><br>
+                    <div class="row justify-content-between">
+                        <input type="file" class="form-control col-sm-7 imgur" id="input-upload-image-imgur"
+                               accept="image/*"
+                               data-max-size="5000"/>
+                        <button id="modal-upload-to-imgur" class="btn btn-info col-sm-4 btn-modal">Upload to Imgur
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Select image to upload to Cloudinary :</label><br>
+                    <div class="row justify-content-between">
+                        <input type="file" class="cloudinary form-control col-sm-7" id="input-upload-image-cloudinary"
+                               accept="image/*"
+                               data-max-size="5000"/>
+                        <button id="modal-upload-to-cloudinary" class="btn btn-info col-sm-4 btn-modal">Upload to
+                            Cloudinary
+                        </button>
+                    </div>
+                </div>
+
+                <hr>
+
+                <label>Image description :</label><br>
+                <div class="row justify-content-between">
+                    <input type="text" id="modal-image-alt" class="form-control col-sm-7"/><br>
+                </div>
+
+                <label>Image height :</label><br>
+                <div class="row justify-content-between">
+                    <input type="text" id="modal-image-height" class="form-control col-sm-7"/><br>
+                </div>
+
+                <label>Image width :</label><br>
+                <div class="row justify-content-between">
+                    <input type="text" id="modal-image-width" class="form-control col-sm-7"/>
+                    <div class="col-sm2">
+                        <input type="checkbox" id="keep-ratio" name="keep-ratio" checked>
+                        <label for="keep-ratio">Lock</label>
+                    </div>
+                    <button id="reset-size" name="reset-size" class="btn btn-info">Reset size</button>
+                </div>
+                <br>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button data-command='insertimage' id="input-insert-image" class="btn btn-success">Insert image</button>
+
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="link-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Insert a link</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <label>Text :</label>
+                <input type="url" id="input-link-text" class="form-control"/>
+                <br>
+                <label>URL :</label><br>
+                <input type="url" id="input-link" class="form-control"/>
+                <br>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button data-command='createLink' class="btn btn-success" id="button-insert-link">Insert link</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="embed-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Insert url of video</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <label>URL :</label><br>
+                <input type="url" id="input-embed" class="form-control"/>
+                <br>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button data-command='createEmbed' class="btn btn-success" id="button-insert-embed">Insert Video
+                </button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="border-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Border</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="form-group">
+                    <input type="number" min="0" class="form-control form-control-sm" placeholder="Up"
+                           id="salasa-input-border-up">
+                </div>
+                <div class="form-group">
+                    <input type="number" min="0" class="form-control form-control-sm" placeholder="Right"
+                           id="salasa-input-border-right">
+                </div>
+                <div class="form-group">
+                    <input type="number" min="0" class="form-control form-control-sm" placeholder="Down"
+                           id="salasa-input-border-down">
+                </div>
+                <div class="form-group">
+                    <input type="number" min="0" class="form-control form-control-sm" placeholder="Left"
+                           id="salasa-input-border-left">
+                </div>
+                <div class="form-group">
+                    <select class="form-control form-control-sm" id="salasa-input-border-style">
+                        <option value="solid">Solid</option>
+                        <option value="dotted">Dotted</option>
+                        <option value="dashed">Dashed</option>
+                        <option value="double">Double</option>
+                        <option value="none">None</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select class="form-control form-control-sm" id="salasa-input-border-color" placeholder="Color">
+                    </select>
+                </div>
+                <br>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button class="btn btn-success" id="button-insert-border">Insert border
+                </button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="prism-code-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Code</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="form-group">
+                    <select class="form-control" id="select-prism-code">
+                        <option value="js">Javascript</option>
+                        <option>2</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <textarea id="input-prism-code" class="form-control"></textarea>
+                </div>
+                <br>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button data-command='createPrismCode' class="btn btn-success" id="button-insert-prism-code">Insert Code
+                </button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end modals-->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+<script src="extern-plugins/prismjs/prism.js"></script>
+
+<script>
+
+    //start by hiding the textarea in which we put the html code
+    $("#editor-html").hide();
+
+    //for the link insertion, if a text is selected I don't want to replace him
+    var selectedText = false;
+
+    // check if imgur or cloudinary is selected as hosting service
+    var urlFromImgur = '';
+    var urlFromCloudinary = '';
+
+    //check if tool bar is hidden or not for html view
+    var hiddenToolbar = false;
+
+    //check if the editor is full screen or not
+    var fullscreen = false;
+
+    //get the element on which we clicked in the editor
+    var target;
+    //
+
+    //option to displaytime and language of browser for clock btn
+    var optionsFullDate = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    var userLang = navigator.language;
+
+    //for character count at initilization
+    var contenteditable = document.querySelector('[contenteditable]');
+    text = contenteditable.textContent;
+    $('#salasa-character-count').text(text.length);
+    $('#salasa-character-count-no-spaces').text(text.replace(/\s/g, "").length);
+    var salasaWords = $.trim(text).split(" ");
+    $('#salasa-character-count-words').text(salasaWords.length);
+
+    // Start modal img logic ---------------------------------------------------------------
+    //the modal make us lose the focus on the editor, that'sthe purpose of saveRangePosition() and restoreRangePosition()
+    // when we close the modal we restore the position of the caret
+    $(".close").on('click', function () {
+        restoreRangePosition();
+        selectedText = false;
+    });
+
+    // End modal logic ---------------------------------------------------------------
+
+    // Start palette logic ---------------------------------------------------------------
+    var colorPalette = ['ffffff', '000000', 'eeece1', '1f497d', '4f81bd', 'c0504d', '9bbb59', '8064a2', '4bacc6', 'f79646', 'ffff00', 'f2f2f2', '7f7f7f', 'ddd9c3', 'c6d9f0', 'dbe5f1', 'f2dcdb', 'ebf1dd', 'e5e0ec', 'dbeef3', 'fdeada', 'fff2ca', 'd8d8d8', '595959', 'c4bd97', '8db3e2', 'b8cce4', 'e5b9b7', 'd7e3bc', 'ccc1d9', 'b7dde8', 'fbd5b5', 'ffe694', 'bfbfbf', '3f3f3f', '938953', '548dd4', '95b3d7', 'd99694', 'c3d69b', 'b2a2c7', 'b7dde8', 'fac08f', 'f2c314', 'a5a5a5', '262626', '494429', '17365d', '366092', '953734', '76923c', '5f497a', '92cddc', 'e36c09', 'c09100', '7f7f7f', '0c0c0c', '1d1b10', '0f243e', '244061', '632423', '4f6128', '3f3151', '31859b', '974806', '7f6000'];
+    var forePalette = $('.fore-palette');
+    var backPalette = $('.back-palette');
+
+    for (var i = 0; i < colorPalette.length; i++) {
+        forePalette.append('<a href="#" data-command="forecolor" data-value="' + '#' + colorPalette[i] + '" style="background-color:' + '#' + colorPalette[i] + ';" class="palette-item dropdown-item"></a>');
+        backPalette.append('<a href="#" data-command="backcolor" data-value="' + '#' + colorPalette[i] + '" style="background-color:' + '#' + colorPalette[i] + ';" class="palette-item dropdown-item"></a>');
+    }
+    // End palette logic ---------------------------------------------------------------
+
+    // Start buttons background logic when focus on txtarea ---------------------------------------------------------------
+
+    /***
+     *get the command of the text we click on, if text is underline I'll get true for Underline
+     * toggle the class clicked at the toolbar link to add background when they are being used
+     * @param theTag
+     * @param theCommand
+     * @param theBool
+     * return true if a command is detected
+     */
+    function checkTool(theTag, theCommand, theBool = false) {
+        if (document.queryCommandState(theCommand)) {
+            theBool = true;
+            if (!$("#" + theTag).hasClass("clicked")) {
+                $("#" + theTag).addClass("clicked");
+            }
+        } else {
+            if ($("#" + theTag).hasClass("clicked")) {
+                $("#" + theTag).removeClass("clicked");
+            }
+        }
+        return theBool;
+    }
+
+    /***
+     * if checkTool() is true we change the background of the button
+     * @param theTag
+     * @param theCommand
+     */
+    function btnBackground(theTag, theCommand) {
+        if (checkTool(theTag, theCommand))
+            $('.clicked').css("background-color", "#dfdfdf");
+        else
+            $('#' + theTag).removeAttr("style");
+    }
+
+    // after checking under which command the text we click on / selected we change the background of the button
+    // if the text is under the influence of this button or not
+    $('#editor').on('mousedown mouseup click', function (event) {
+        // we will get the parent node with this command, ideal to add css to the paragraph
+        target = $(event.target);
+        //console.log(target[0].innerHTML); get the html of the target, leave here to remember the command
+
+        //if the target is not of img type the div who serve to resize img is reinitialized
+        if (!target.is("img")) {
+            $("#img-resizer").css({top: 0, left: 0, width: 0, height: 0});
+            $('.resizer-corner').css('visibility', 'hidden');
+            $(".resizer").remove();
+        }
+
+        //change background of concerned button
+        btnBackground("a-underline", "underline");
+        btnBackground("a-bold", "bold");
+        btnBackground("a-strikeThrough", "strikeThrough");
+        btnBackground("a-italic", "italic");
+        btnBackground("a-italic", "italic");
+        btnBackground("a-justifyLeft", "justifyLeft");
+        btnBackground("a-justifyCenter", "justifyCenter");
+        btnBackground("a-justifyRight", "justifyRight");
+        btnBackground("a-justifyFull", "justifyFull");
+        btnBackground("a-insertUnorderedList", "insertUnorderedList");
+        btnBackground("a-insertOrderedList", "insertOrderedList");
+        btnBackground("a-subscript", "subscript");
+        btnBackground("a-superscript", "superscript");
+
+    });
+    // End buttons background logic ---------------------------------------------------------------
+
+    // Start prism logic ---------------------------------------------------------------
+
+    /***
+     * todo if double click on prism code, then I should be able to edit it
+     */
+    $('#editor').on('dblclick', function (event) {
+        var target = $(event.target);
+        if (target.is("pre")) {
+            $('#prism-code-modal').modal('show');
+        }
+    });
+
+    // End prism logic ---------------------------------------------------------------
+
+    /***
+     * What happens when we click on a button, need to be a mousedown, because a click will make us lost the focus
+     * on the editor, and the command will not work
+     */
+    $('.toolbar a').bind('mousedown', function (e) {
+
+        // This is for the tag a of the toolbar to not lose focus, for buttons, I will lose focus, so i must do differently
+
+        //reinitialize the div to resize images
+        $("#img-resizer").css({top: 0, left: 0, width: 0, height: 0});
+        $('.resizer-corner').css('visibility', 'hidden');
+        $(".resizer").remove();
+
+        //get the command of the link clicked
+        var command = $(this).data('command');
+
+
+        //don't want to change the background of the buttons/link who have these commands
+        if (command != 'forecolor' && command != 'backcolor' && command != 'indent' && command != 'outdent'
+            && command != 'h1' && command != 'h2' && command != 'h3' && command != 'h4' && command != 'h5'
+            && command != 'h6' && command != 'p' && command != 'undo' && command != 'redo' && command != 'linkCreation'
+            && command != 'insertLink' && command != 'horizontalLine' && command != 'insertTheImage'
+            && command != 'insertTheEmbed' && command != 'prismCode' && command != 'indentation'
+            && command != 'outdentation' && command != 'ff-font' && command != 'removeFormat'
+            && command != 'ff-fontsize' && command != 'lh-lineheight' && command != 'borderUpDown' && command != 'borderRemove'
+            && command != 'border-personalization' && command != 'printDiv' && command != 'insertOrderedList'
+            && command != 'insertUnorderedList' && command != 'clock' && command != 'page-break' && command != 'unlink') {
+            $(this).toggleClass("clicked");
+        }
+
+        if (command == 'h1' || command == 'h2' || command == 'h3' || command == 'h4' ||
+            command == 'h5' || command == 'h6' || command == 'p') {
+            restoreRangePosition();
+            document.execCommand('formatBlock', false, command);
+        }
+        else if (command == 'forecolor' || command == 'backcolor') {
+            restoreRangePosition();
+            document.execCommand($(this).data('command'), false, $(this).data('value'));
+        }
+        else if (command == 'ff-font') {
+            var fontName = $(this).data('font');
+            restoreRangePosition();
+            document.execCommand('fontName', false, fontName);
+        }
+        else if (command == 'ff-fontsize') {
+            var fontSize = $(this).data('font');
+            restoreRangePosition();
+            document.execCommand('fontSize', false, 1);
+            var fontElements = document.getElementsByTagName("font");
+            //the contenteditable fontSize command only allow 1 to 7 size for font but i want pixel
+            //So I give always one, then I found it and change it by the value chosen by the user
+            for (var i = 0, len = fontElements.length; i < len; ++i) {
+                if (fontElements[i].size == "1") {
+                    fontElements[i].removeAttribute("size");
+                    fontElements[i].style.fontSize = fontSize;
+                }
+            }
+        }
+        else if (command == 'lh-lineheight') {
+            var lineHeight = $(this).data('lh');
+            restoreRangePosition();
+            target.css('line-height', lineHeight);
+        }
+        else if (command == 'bold') {
+            document.execCommand($(this).data('command'), false, null);
+            //remplace all the b tag in the editor by the strong tag
+            $('#editor b').replaceWith(function () {
+                return $('<strong>').append($(this).html())
+            })
+        }
+        else if (command == "insertOrderedList") {
+            var olType =  $(this).data('list');
+            document.execCommand($(this).data('command'), false, null);
+            target.children('ol').css('list-style-type', olType);
+        }
+        else if (command == "insertUnorderedList") {
+            var ulType =  $(this).data('list');
+            document.execCommand($(this).data('command'), false, null);
+            target.children('ul').css('list-style-type', ulType);
+
+        }
+        else if (command == "justifyLeft") {
+            //for all the justify, only one at the time is possible, so when one is chosen,i remove the class used to
+            //change background
+            $('#a-justifyCenter').removeAttr("style");
+            $('#a-justifyCenter').removeClass("clicked");
+            $('#a-justifyRight').removeAttr("style");
+            $('#a-justifyRight').removeClass("clicked");
+            $('#a-justifyFull').removeAttr("style");
+            $('#a-justifyFull').removeClass("clicked");
+            restoreRangePosition();
+            document.execCommand($(this).data('command'), false, null);
+        }
+        else if (command == "justifyCenter") {
+            $('#a-justifyLeft').removeAttr("style");
+            $('#a-justifyLeft').removeClass("clicked");
+            $('#a-justifyRight').removeAttr("style");
+            $('#a-justifyRight').removeClass("clicked");
+            $('#a-justifyFull').removeAttr("style");
+            $('#a-justifyFull').removeClass("clicked");
+            restoreRangePosition();
+            document.execCommand($(this).data('command'), false, null);
+        }
+        else if (command == "justifyRight") {
+            $('#a-justifyLeft').removeAttr("style");
+            $('#a-justifyLeft').removeClass("clicked");
+            $('#a-justifyCenter').removeAttr("style");
+            $('#a-justifyCenter').removeClass("clicked");
+            $('#a-justifyFull').removeAttr("style");
+            $('#a-justifyFull').removeClass("clicked");
+            restoreRangePosition();
+            document.execCommand($(this).data('command'), false, null);
+        }
+        else if (command == "justifyFull") {
+            $('#a-justifyLeft').removeAttr("style");
+            $('#a-justifyLeft').removeClass("clicked");
+            $('#a-justifyRight').removeAttr("style");
+            $('#a-justifyRight').removeClass("clicked");
+            $('#a-justifyCenter').removeAttr("style");
+            $('#a-justifyCenter').removeClass("clicked");
+            restoreRangePosition();
+            document.execCommand($(this).data('command'), false, null);
+        }
+        else if (command == 'horizontalLine') {
+            document.execCommand('insertHTML', 0, "<hr>");
+        }
+        else if (command == 'page-break'){
+            document.execCommand('insertHTML', 0, '<div class="separator no-print pagebreak" contenteditable="false"></div><p>...</p>');
+        }
+        else {
+            document.execCommand($(this).data('command'), false, null);
+        }
+
+
+        //test to delete
+
+
+        //todo be sure you can delete this (cad no bug with palette)
+        // //don't want to change the background of the palette
+        // if (command != 'forecolor' && command != 'backcolor') {
+        //     if ($(this).hasClass("clicked")) {
+        //         $(this).css("background-color", "#dfdfdf");
+        //     } else {
+        //         $(this).removeAttr("style");
+        //     }
+        // }
+
+        //don't want to lose focus so prevent default
+        e.preventDefault();
+    });
+
+
+    // in the toolbar I have <a> and <button> I do the <a> with the mouse down and for the button I use this to
+    //reinitialize the div used to resize image
+    $('.toolbar button').on('click', function () {
+        $("#img-resizer").css({top: 0, left: 0, width: 0, height: 0});
+        $('.resizer-corner').css('visibility', 'hidden');
+        $(".resizer").remove();
+    });
+
+    //start b saving the position of the caret on button click
+    $('#a-insertimage').on('click', function () {
+        saveRangePosition();
+    });
+
+    $('#a-prism-code').on('click', function () {
+        saveRangePosition();
+    });
+
+    $('#a-noembed').on('click', function () {
+        saveRangePosition();
+    });
+
+    $('#a-creatLink').on('click', function () {
+        if (window.getSelection().toString()) {
+            selectedText = true;
+        }
+        saveRangePosition();
+    });
+    $('#heading-button').on('click', function () {
+        saveRangePosition();
+    });
+    $('#align-button').on('click', function () {
+        saveRangePosition();
+    });
+    $('#fore-wrapper-button').on('click', function () {
+        saveRangePosition();
+    });
+    $('#back-wrapper-button').on('click', function () {
+        saveRangePosition();
+    });
+    $('#table-button').on('click', function () {
+        saveRangePosition();
+    });
+    $('#font-button').on('click', function () {
+        saveRangePosition();
+    });
+    $('#fontsize-button').on('click', function () {
+        saveRangePosition();
+    });
+    $('#lineheight-button').on('click', function () {
+        saveRangePosition();
+    });
+    $('#border-button').on('click', function () {
+        saveRangePosition();
+    });
+
+    $('#a-print-editor').on('click', function () {
+        printDiv();
+    });
+
+    $('#a-clock').on('mousedown', function () {
+        saveRangePosition();
+        var d = new Date();
+        var fullDay = d.toLocaleDateString(userLang,optionsFullDate);
+        var shortDay =d.toLocaleDateString();
+        var fullDayHours = fullDay + ' '+ d.getHours() + ":" + d.getMinutes() + 'hrs';
+        var shortHours =  d.getHours() + ":" + d.getMinutes() + 'hrs';
+
+        $('#fullTime').text(fullDayHours);
+        $('#longDay').text(fullDay);
+        $('#shortDay').text(shortDay);
+        $('#shortHour').text(shortHours);
+    });
+
+
+
+
+    //create indentation by adding margin to target
+    $('#a-indentation').on('click', function () {
+        target.css('margin-left', '+=25px');
+    });
+    $('#a-outdentation').on('click', function () {
+        if (parseInt(target.css('margin-left')) > 0) {
+            target.css('margin-left', '-=25px');
+        }
+    });
+
+    $('#fullTime').on('click',function () {
+       restoreRangePosition();
+        var d = new Date();
+        var fullDay = d.toLocaleDateString(userLang,optionsFullDate);
+        var fullDayHours = fullDay + ' '+ d.getHours() + ":" + d.getMinutes() + 'hrs';
+        document.execCommand('insertHTML', 0, fullDayHours);
+    });
+
+    $('#shortDay').on('click',function () {
+        restoreRangePosition();
+        var d = new Date();
+        var shortDay =d.toLocaleDateString();
+        document.execCommand('insertHTML', 0, shortDay);
+    });
+
+    $('#shortHour').on('click',function () {
+        restoreRangePosition();
+        var d = new Date();
+        var shortHours =  d.getHours() + ":" + d.getMinutes() + 'hrs';
+        document.execCommand('insertHTML', 0, shortHours);
+    });
+
+    $('#longDay').on('click',function () {
+        restoreRangePosition();
+        var d = new Date();
+        var fullDay = d.toLocaleDateString(userLang,optionsFullDate);
+        document.execCommand('insertHTML', 0, fullDay);
+    });
+
+    //start logic insert table------------------------------------------------------------
+    $('#salasa-btn-insert-table').on('click', function () {
+        var tableRows = parseInt($('#salasa-input-row').val());
+        var tableCols = parseInt($('#salasa-input-col').val());
+        var htmlTable = "";
+        //create a html line for inserting with the insertHtml command
+        if (tableCols > 0 && tableRows > 0) {
+            htmlTable = '<table class="salasa-table">';
+            for (i = 1; i <= tableCols; i++) {
+                htmlTable += "<tr>";
+                for (j = 1; j <= tableRows; j++) {
+                    htmlTable += "<td></td>";
+                }
+                htmlTable += "</tr>";
+            }
+            htmlTable += "</table>";
+            restoreRangePosition();
+            document.execCommand('insertHTML', 0, htmlTable);
+            htmlTable = "";
+        }
+    });
+    // end logic insert table------------------------------------------------------------------
+
+    // start rawhtml logic ------------------------------------------------------------------
+
+    //we got a invisible textarea who is superposed to the editor, we pass the html value of the editor in the textarea
+    // and sho the text area, if we do changement in the textarea, we get back it's value and pass it in the editor
+    $('#a-rawhtml').click(function () {
+        if ($('#editor-html').is(":hidden")) {
+            $("#editor-html").show();
+            var salasaCode = $("#editor").html();
+            $("#editor-html").text(formatCode(salasaCode, true, true));
+        } else {
+            $("#editor-html").hide();
+            var yy = $("#editor-html").val();
+            $("#editor").html(yy);
+        }
+
+        //hide the toolbar because the command will not react on html
+        if (!hiddenToolbar) {
+            $('.toolbar a').css('visibility', 'hidden');
+            $('#a-rawhtml').css('visibility', 'visible');
+            $('.toolbar button').css('visibility', 'hidden');
+            hiddenToolbar = true;
+        } else {
+            $('.toolbar a').css('visibility', 'visible');
+            $('#a-rawhtml').css('visibility', 'visible');
+            $('.toolbar button').css('visibility', 'visible');
+            hiddenToolbar = false;
+        }
+    });
+
+    //expend thescreen by making the editor absolute and expad it
+    $('#a-expend-screen').on('click', function (e) {
+        if (!fullscreen) {
+            $('#salasa-editor').css('position', 'absolute');
+            $('#salasa-editor').css('min-height', '-webkit-fill-available');
+            $('#salasa-editor').css('min-width', '-webkit-fill-available');
+            $('#editor').css('min-height', '-webkit-fill-available');
+            fullscreen = true;
+        } else {
+            $('#salasa-editor').css('position', '');
+            $('#salasa-editor').css('min-height', '');
+            $('#salasa-editor').css('min-width', '');
+            $('#editor').css('min-height', '');
+            fullscreen = false
+        }
+    });
+
+    //start border logic---------------------------------------------------------------------------
+
+    //3 possibility for the border, first is a quick border, so on btn click I add the styles.
+    $('#a-b-updown').on('click', function () {
+        restoreRangePosition();
+        target.css('border-style', 'solid');
+        target.css('border-width', '1px 0 1px 0');
+    });
+
+    //On remove I remove the style
+    $('#a-b-remove').on('click', function () {
+        restoreRangePosition();
+        target.css('border-style', '');
+        target.css('border-width', '');
+    });
+
+
+
+
+
+    //this is for the modal border we get back the value of the form and propose a style
+    //populate select input with color
+    $('document').ready(function(){
+        var borderColorSelect = $('#salasa-input-border-color');
+
+        //start by puttin a null value
+        var o = new Option("Color", "value");
+        /// jquerify the DOM object 'o' so we can use the html method
+        $(o).html("");
+        $("#salasa-input-border-color").append(o);
+
+        //then put every color from the palette in the select
+        $.each(colorPalette, function( index, value ) {
+            var o = new Option("Color", "#"+value);
+            $(o).html("#"+value);
+            $("#salasa-input-border-color").append(o);
+            $(o).css("background-color", "#"+value);
+        });
+    });
+
+
+    $('#button-insert-border').on('click', function () {
+        var borderUp;
+        var borderRight;
+        var borderDown;
+        var borderLeft;
+        var borderStyle;
+        var borderColor;
+        $('#salasa-input-border-up').val() ? borderUp = $('#salasa-input-border-up').val() : borderUp = 0;
+        $('#salasa-input-border-right').val() ? borderRight = $('#salasa-input-border-right').val() : borderRight = 0;
+        $('#salasa-input-border-down').val() ? borderDown = $('#salasa-input-border-down').val() : borderDown = 0;
+        $('#salasa-input-border-left').val() ? borderLeft = $('#salasa-input-border-left').val() : borderLeft = 0;
+        $('#salasa-input-border-color').val() ? borderColor = $('#salasa-input-border-color').val() : borderColor = "#000000";
+
+        borderStyle = $('#salasa-input-border-style').val();
+        restoreRangePosition();
+
+        target.css('border-style', borderStyle);
+        target.css('border-width', '' + borderUp + 'px ' + borderRight + 'px ' + borderDown + 'px ' + borderLeft + 'px');
+        target.css('border-top-color', borderColor);
+        target.css('border-right-color', borderColor);
+        target.css('border-bottom-color', borderColor);
+        target.css('border-left-color', borderColor);
+
+
+        // remove the style if none
+        if (borderStyle == 'none') {
+            target.css('border-style', '');
+            target.css('border-width', '');
+        }
+        $('#border-modal').modal('hide');
+    });
+    //end border logic---------------------------------------------------------------------------
+
+    //start image modal logic---------------------------------------------------------------------------
+    //when we confirm the url in the image modal
+    $('#confirm-url').on("click", function () {
+        lock = true;
+        //empty the other input file
+        $('#input-upload-image-cloudinary').val("");
+        $('#input-upload-image-imgur').val("");
+        url = $('#input-upload-image-by-url').val();
+        getMeta(url);
+    });
+
+    //when we confirm the upload to imgur
+    $('#modal-upload-to-imgur').on('click', function () {
+
+        //empty the other input file
+        $('#input-upload-image-by-url').val("");
+        $('#input-upload-image-cloudinary').val("");
+
+        var $files = $('#input-upload-image-imgur').get(0).files;
+
+        if ($files.length) {
+
+            //no need to reject big file because max is 20mb
+
+            // Replace ctrlq with your own API key
+            var apiUrl = 'https://api.imgur.com/3/image';
+            var apiKey = '9e57cb1c4791cea';
+
+            var settings = {
+                // async: false,
+                crossDomain: true,
+                processData: false,
+                contentType: false,
+                type: 'POST',
+                url: apiUrl,
+                headers: {
+                    Authorization: 'Client-ID ' + apiKey,
+                    Accept: 'application/json'
+                },
+                mimeType: 'multipart/form-data'
+            };
+
+            var formData = new FormData();
+            formData.append("image", $files[0]);
+            settings.data = formData;
+
+            // Response contains stringified JSON
+            // Image URL available at response.data.link
+            $.ajax(settings).done(function (response) {
+                urlFromImgur = JSON.parse(response).data.link;
+                getMeta(urlFromImgur);
+                lock = true;
+            });
+        }
+    });
+
+    //a checkbox to know if the user want to keep the ratio when changing imgsize
+    $('#keep-ratio').change(function () {
+        $(this).is(":checked") ? lock = true : lock = false;
+    });
+
+    //when we click on the button toinsert
+    $('#input-insert-image').on("click", function () {
+
+        //we get the alt
+        imgAltText = $('#modal-image-alt').val();
+        //then we get one of the source
+        if (urlFromImgur != '') {
+            imgSrcInput = urlFromImgur;
+        } else if (urlFromCloudinary != '') {
+            imgSrcInput = urlFromCloudinary;
+        } else {
+            imgSrcInput = $('#input-upload-image-by-url').val();
+        }
+        //set the input with the size of the image
+        if ($('#modal-image-width').val()) {
+            imgWidth = $('#modal-image-width').val();
+        } else {
+            imgWidth = originalWidth;
+        }
+        if ($('#modal-image-height').val()) {
+            imgHeight = $('#modal-image-height').val();
+        } else {
+            imgHeight = originalHeight;
+        }
+
+        restoreRangePosition();
+
+        document.execCommand('insertHTML', 0, '<img class="salasa-img" src="' + imgSrcInput + '" alt="' + imgAltText + '" width="' + imgWidth + '" height="' + 'auto' + '" contenteditable="false" />');
+
+        //restore the form
+        urlFromCloudinary = "";
+        urlFromImgur = "";
+        $('#modal-image-alt').val('');
+        $('#modal-image-width').val('');
+        $('#modal-image-height').val('');
+        $('#input-upload-image-by-url').val('');
+        $('#input-upload-image-imgur').val('');
+        $('#input-upload-image-cloudinary').val('');
+
+        $('#image-modal').modal('hide');
+
+    });
+
+    /***
+     *get the meta descrition in javascript of the image
+     * @param url
+     */
+    function getMeta(url) {
+        var img = new Image();
+        img.onload = function () {
+            originalWidth = this.width;
+            originalHeight = this.height;
+            newWidth = originalWidth;
+            newHeight = originalHeight;
+            $('#modal-image-height').val(originalHeight);
+            $('#modal-image-width').val(originalWidth);
+        };
+        img.src = url;
+    }
+
+    //when we change the height, the width must stay at the same ratio
+    $('#modal-image-height').on('input', function () {
+        if (lock) {
+            if (originalWidth > originalHeight)
+                $('#modal-image-width').val(Math.round($(this).val() * keepRatio()));
+            else
+                $('#modal-image-width').val(Math.round($(this).val() / keepRatio()));
+        }
+        newWidth = $('#modal-image-width').val();
+        newHeight = $('#modal-image-height').val();
+
+    });
+
+    //when we change the width, the height must stay at the same ratio
+    $('#modal-image-width').on('input', function () {
+        if (lock) {
+            if (originalWidth > originalHeight)
+                $('#modal-image-height').val(Math.round($(this).val() / keepRatio()));
+            else
+                $('#modal-image-height').val(Math.round($(this).val() * keepRatio()));
+        }
+        newWidth = $('#modal-image-width').val();
+        newHeight = $('#modal-image-height').val();
+    });
+
+    //reset the sizeon clik
+    $('#reset-size').on('click', function () {
+        $('#modal-image-width').val(originalWidth);
+        $('#modal-image-height').val(originalHeight);
+    });
+
+    //to be sure to keep the original ration, we restore the width and height if the checkbox is clicked on
+    $('#keep-ratio').on('click', function () {
+        $('#modal-image-width').val(originalWidth);
+        $('#modal-image-height').val(originalHeight);
+    });
+
+    /***
+     * Method to calcul the ratio
+     * @returns {number}
+     */
+    function keepRatio() {
+        if (originalWidth > originalHeight)
+            return aspectRatio = (originalWidth / originalHeight);
+        else
+            return aspectRatio = (originalHeight / originalWidth);
+    }
+
+    //End image modal logic---------------------------------------------------------------------------
+
+    //start link modal logic---------------------------------------------------------------------------
+
+    //when we click on the insert button of the modal
+    $('#button-insert-link').on('click', function () {
+        // we get the url
+        url = $('#input-link').val();
+
+        //and check if we need to generate a text or not
+        if ($('#input-link-text').val() != "" && !selectedText) {
+            text = $('#input-link-text').val();
+            restoreRangePosition();
+            document.execCommand("insertHTML", false, "<a href='" + url + "'>" + text + "</a>");
+        } else {
+            restoreRangePosition();
+            document.execCommand("CreateLink", false, url);
+        }
+        selectedText = false;
+        $('#image-modal').modal('hide');
+    });
+    //end link modal logic---------------------------------------------------------------------------
+
+    //start embed modal logic---------------------------------------------------------------------------
+
+    $('#button-insert-embed').on('click', function () {
+        var noEmbedUrl = $('#input-embed').val();
+        var noEmbedHtml;
+        // call to the noembed api,if we get a result, we insertIt
+        $.getJSON('https://noembed.com/embed?url=' + noEmbedUrl, function (data) {
+            noEmbedHtml = data.html;
+            restoreRangePosition();
+            if (noEmbedHtml != null) {
+                document.execCommand('insertHTML', 0, noEmbedHtml);
+            }
+        });
+        restoreRangePosition();
+        $('#embed-modal').modal('hide');
+    });
+
+    //End embed modal logic---------------------------------------------------------------------------
+
+    //todo start prism modal logic---------------------------------------------------------------------------
+
+    $('#button-insert-prism-code').on('click', function () {
+        var prismLanguage = $('#select-prism-code').val();
+        var prismCodeArea = $('#input-prism-code').val();
+        restoreRangePosition();
+
+        document.execCommand('insertHTML', 0, '<pre><code class="language-javascript">var fileSystemModule = require( \"file-system\" ); "new fileSystemModule.File( nn );</code></pre>');
+        Prism.highlightAll();
+
+        $('#prism-code-modal').modal('hide');
+        $('#select-prism-code').val("");
+        $('#input-prism-code').val("");
+    });
+
+    //end prism modal logic---------------------------------------------------------------------------
+
+    /***
+     * Save the position of the caret
+     */
+    function saveRangePosition() {
+        try {
+            var range = window.getSelection().getRangeAt(0);
+
+
+        var sC = range.startContainer, eC = range.endContainer;
+        A = [];
+        while (sC !== editor) {
+            A.push(getNodeIndex(sC));
+            sC = sC.parentNode
+        }
+        B = [];
+        while (eC !== editor) {
+            B.push(getNodeIndex(eC));
+            eC = eC.parentNode
+        }
+        window.rp = {"sC": A, "sO": range.startOffset, "eC": B, "eO": range.endOffset};
+        } catch (e) {
+            // console.log('not click in editor yet');
+        }
+    }
+
+    /***
+     * restore the position of the caret
+     */
+    function restoreRangePosition() {
+        editor.focus();
+        var sel = window.getSelection(), range = sel.getRangeAt(0);
+        var x, C, sC = editor, eC = editor;
+
+        C = rp.sC;
+        x = C.length;
+        while (x--) sC = sC.childNodes[C[x]];
+        C = rp.eC;
+        x = C.length;
+        while (x--) eC = eC.childNodes[C[x]];
+
+        range.setStart(sC, rp.sO);
+        range.setEnd(eC, rp.eO);
+        sel.removeAllRanges();
+        sel.addRange(range)
+    }
+
+    /***
+     * used to get the position of the caret
+     * @param n
+     * @returns {number}
+     */
+    function getNodeIndex(n) {
+        var i = 0;
+        while (n = n.previousSibling) i++;
+        return i
+    }
+
+
+    // Parameters:
+    // code 								- (string) code you wish to format
+    // stripWhiteSpaces			- (boolean) do you wish to remove multiple whitespaces coming after each other?
+    // stripEmptyLines 			- (boolean) do you wish to remove empty lines?
+    var formatCode = function (code, stripWhiteSpaces, stripEmptyLines) {
+        "use strict";
+        var whitespace = ' '.repeat(4);             // Default indenting 4 whitespaces
+        var currentIndent = 0;
+        var char = null;
+        var nextChar = null;
+
+
+        var result = '';
+        for (var pos = 0; pos <= code.length; pos++) {
+            char = code.substr(pos, 1);
+            nextChar = code.substr(pos + 1, 1);
+
+            // If opening tag, add newline character and indention
+            if (char === '<' && nextChar !== '/' && nextChar !== 's' &&
+                nextChar !== 'i' && nextChar !== 'u' && nextChar !== 'f' && nextChar !== 'b' && nextChar !== 'a' &&
+                nextChar !== 'c') {
+                result += '\n' + whitespace.repeat(currentIndent);
+                currentIndent++;
+            }
+            // if Closing tag, add newline and indention
+            else if (char === '<' && nextChar === '/') {
+                // If there're more closing tags than opening
+                if (--currentIndent < 0) currentIndent = 0;
+                result += whitespace.repeat(currentIndent);
+            }
+
+            // remove multiple whitespaces
+            else if (stripWhiteSpaces === true && char === ' ' && nextChar === ' ') char = '';
+            // remove empty lines
+            else if (stripEmptyLines === true && char === '\n') {
+                //debugger;
+                if (code.substr(pos, code.substr(pos).indexOf("<")).trim() === '') char = '';
+            }
+
+            result += char;
+        }
+
+        return result;
+    };
+
+
+    /***
+     * We can't resize img directly and if we put a div on the image, the formating will be off
+     * So we ave a hidden and lonely div. When we click on the image, the div will take the same position of the image
+     * and the same size.We will bind his size to the image size.When we change the div ize by dragging the corner, the
+     * image siz will change accordingly
+     */
+    $("#editor").delegate("img", "click", function (e) {
+
+        var resizedImg = $(this);
+        var relativeY = resizedImg.offset().top - $("#editor").offset().top;
+        var relativeX = resizedImg.offset().left - $("#editor").offset().left;
+        var relativeWidth = resizedImg.attr("width");
+        var relativeHeight = resizedImg.height();
+
+        $("#img-resizer").css({top: relativeY, left: relativeX, width: relativeWidth, height: relativeHeight});
+        $('.resizer-corner').css('visibility', 'visible');
+
+        var element = document.getElementById('img-resizer');
+        var resizer = document.createElement('div');
+        resizer.className = 'resizer';
+        resizer.style.width = '10px';
+        resizer.style.height = '10px';
+        resizer.style.background = 'red';
+        resizer.style.position = 'absolute';
+        resizer.style.right = 0;
+        resizer.style.bottom = 0;
+        resizer.style.cursor = 'se-resize';
+        element.appendChild(resizer);
+        resizer.addEventListener('mousedown', initResize, false);
+
+        function initResize(e) {
+            window.addEventListener('mousemove', Resize, false);
+            window.addEventListener('mouseup', stopResize, false);
+        }
+
+        function Resize(e) {
+            element.style.width = (e.clientX - element.offsetLeft) + 'px';
+            element.style.height = $(this).height();
+            resizedImg.attr('width', (e.clientX - element.offsetLeft));
+            // $(".salasa-img").attr('height', (e.clientY - element.offsetTop));
+
+            var relativeY = resizedImg.offset().top - $("#editor").offset().top;
+            var relativeX = resizedImg.offset().left - $("#editor").offset().left;
+            var relativeWidth = resizedImg.attr("width");
+            var relativeHeight = resizedImg.height();
+            var xx = 150;
+
+
+            $("#img-resizer").css({top: relativeY, left: relativeX, width: relativeWidth, height: relativeHeight});
+            $('.resizer-corner').css('visibility', 'visible');
+
+        }
+
+        function stopResize(e) {
+            window.removeEventListener('mousemove', Resize, false);
+            window.removeEventListener('mouseup', stopResize, false);
+        }
+    });
+
+
+    /***
+     * print the content of the editor
+     */
+    function printDiv() {
+        var divToPrint = document.getElementById('editor');
+        var newWin = window.open('', 'Print-Window');
+        newWin.document.open();
+        newWin.document.write('<html><head><link rel="stylesheet" href="style.css"><title>Salasa</title></head><body onload="window.print()">' + divToPrint.innerHTML + '</body></html>');
+        newWin.document.close();
+        setTimeout(function () {
+            newWin.close();
+        }, 10);
+    }
+
+
+    //populate character count
+    $( "#editor").keypress(function() {
+        //get the character count
+        text = contenteditable.textContent;
+        $('#salasa-character-count').text(text.length);
+        $('#salasa-character-count-no-spaces').text(text.replace(/\s/g, "").length);
+        salasaWords = $.trim(text).split(" ");
+        $('#salasa-character-count-words').text(salasaWords.length);
+        //end charachtercount
+    });
+
+</script>
+
+</body>
+</html>
