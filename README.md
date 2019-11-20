@@ -1,4 +1,3 @@
 # Alita
-WYSIWYG
-![Exemple](https://imgur.com/lP7MeKd)
+![Alt text](relative/path/to/img.jpg?raw=true "Title")
 
