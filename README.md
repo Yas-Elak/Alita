@@ -1,3 +1,3 @@
 # Alita
-![Alt text](relative/path/to/img.jpg?raw=true "Title")
+![Alt text](capture.png?raw=true "Title")
 
